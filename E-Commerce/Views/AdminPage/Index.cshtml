@@ -1,0 +1,39 @@
+﻿@model IEnumerable<E_Commerce.Models.Order>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Admin Panel</h2>
+
+<p>
+    @Html.ActionLink("Products", "AdminProducts")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Full name
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.price)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.user.FirstName)
+            @Html.DisplayFor(modelItem => item.user.LastName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.price)
+        </td>
+        <td>
+            @Html.ActionLink("View Order", "Order", new { id = item.ID },
+            new { @class = "btn btn-success ", @style = "color:Black" })
+        </td>
+    </tr>
+}
+
+</table>

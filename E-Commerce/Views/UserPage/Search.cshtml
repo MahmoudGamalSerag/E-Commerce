@@ -1,0 +1,57 @@
+﻿@model E_Commerce.ViewModels.SearchModelView
+
+@{
+    ViewBag.Title = "Search";
+}
+<h2>@Html.ActionLink("My Cart", "cart", new { id = Model.user.ID })</h2>
+<h3> @Html.ActionLink("Edit Profile", "Edit", new { id = Model.user.ID })</h3>
+<form method="get" asp.action="Search">
+    <p>
+        <input type="search" placeholder="Enter The product Name...." value="@ViewData["productsearch"]" name="productsearch" style="width:500px;" />
+        <input type="submit" value="search" class=" btn btn-primary" />
+    </p>
+
+</form>
+<div align="center">
+    @foreach (var item in Model.products)
+    {
+        <div>
+            <h2> @Html.DisplayFor(modelItem => item.title)</h2>
+        </div>
+        <div>
+            <h2>$ @Html.DisplayFor(modelItem => item.cost)</h2>
+        </div>
+        <div>
+            <img src=" @Html.DisplayFor(modelItem => item.image)" width="450" height="450" />
+        </div>
+        <div>
+            @Html.ActionLink("Add To Cart", "cartfun", new { id = item.ID, id2 = Model.user.ID },
+                new { @class = "btn btn-primary", @style = "color:white" })
+
+        </div>
+        <hr />
+    }
+</div>
+
+@*<table class="table">
+
+
+        @foreach (var item in Model.SerachUsers)
+        {
+            <tr>
+                <td>
+                    <img src="@Html.DisplayFor(modelItem => item.Image) " width="80" height="120" />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FirstName)
+                    @Html.DisplayFor(modelItem => item.LastName)
+                </td>
+                <td>
+                <td>
+                    @Html.ActionLink("Add Friend", "AddFriend", new { id = item.ID ,id2=Model.user.ID},
+                   new { @class = "btn btn-primary", @style = "color:white" })
+                </td>
+            </tr>
+        }
+
+    </table>*@

@@ -1,0 +1,43 @@
+﻿@model IEnumerable<E_Commerce.Models.Product>
+
+@{
+    /**/
+
+    ViewBag.Title = "Admin Products";
+}
+<h1>
+
+  @Html.ActionLink("Add Product", "Create")
+    
+</h1>
+
+
+
+<div align="center">
+    @foreach (var item in Model)
+    {
+        <div>
+            <h2> @Html.DisplayFor(modelItem => item.title)</h2>
+        </div>
+        <div>
+            <h2>$ @Html.DisplayFor(modelItem => item.cost)</h2>
+        </div>
+        <div>
+            <img src=" @Html.DisplayFor(modelItem => item.image)" width="450" height="450" />
+        </div>
+        <div>
+
+            @Html.ActionLink("Update", "UpdateFun", new { id = item.ID },
+                new { @class = "btn btn-primary", @style = "color:white" })
+
+            @Html.ActionLink("Remove", "Remove", new { id = item.ID },
+                new { @class = "btn btn-danger", @style = "color:Black" })
+
+        </div>
+        <hr />
+    }
+</div>
+
+<div>
+    @Html.ActionLink("Admin Panel ", "Index")
+</div>

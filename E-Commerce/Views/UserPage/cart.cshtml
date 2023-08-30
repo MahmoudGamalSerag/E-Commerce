@@ -1,0 +1,66 @@
+﻿@model E_Commerce.ViewModels.CartView
+
+@{
+    ViewBag.Title = "cart";
+}
+
+<h2>Mycart</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            Product
+        </th>
+        <th>
+            Image
+        </th>
+        <th>
+            Cost
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.carts)
+    {
+    <tr>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.product.title)
+        </td>
+        <td>
+            <img src=" @Html.DisplayFor(modelItem => item.product.image)" width="150" height="150" />
+        </td>
+        <td>
+            $@Html.DisplayFor(modelItem => item.product.cost)
+        </td>
+        <td>
+            @Html.ActionLink("Remove", "RemoveProduct", new { id = Model.user.ID,id2= item.productid },
+                                new { @class = "btn btn-danger", @style = "color:Black" })
+        </td>
+    </tr>
+    }
+    <tr>
+        <th>
+            Total Cost:
+        </th>
+        <th>
+        </th>
+        <th>
+            $@Html.DisplayFor(model => model.TotalCost)
+        </th>
+        <th>
+            @if(Model.TotalCost>0)
+            {
+
+            @Html.ActionLink("Make Order", "PaymentFun", new { id = Model.user.ID },
+                                new { @class = "btn btn-primary", @style = "color:Black" })
+            }
+        </th>
+        <th></th>
+    </tr>
+
+</table>
+<div>
+    @Html.ActionLink("Profile", "Search", Model.user)
+</div>
